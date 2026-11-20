@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "d391c132-6e28-46de-87c0-c9da5b580431",
+    "name": "BooksAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44232755",
+    "_collection_link": "https://go.postman.co/collection/44232755-d391c132-6e28-46de-87c0-c9da5b580431?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "API Status",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"status field value is 'OK' \", () => {\r",
+              "    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl_collect}}/status",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register API Client",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 201\", () => { \r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.collectionVariables.set(\"authorization_secret_token\", jsonData.accessToken);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"clientName\": \"Postman API testing\",\r\n    \"clientEmail\": \"testing123@msn.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl_collect}}/api-clients/",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "api-clients",
+            ""
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "accessToken",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"clientName\": \"Kakan\",\r\n    \"clientEmail\": \"yyy123@msn.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://simple-books-api.glitch.me/api-clients/",
+              "protocol": "https",
+              "host": [
+                "simple-books-api",
+                "glitch",
+                "me"
+              ],
+              "path": [
+                "api-clients",
+                ""
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "Text",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "82"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 10 Nov 2026 04:34:25 GMT"
+            },
+            {
+              "key": "X-Amzn-Trace-Id",
+              "value": "Root=1-6af29ed1-3754dd816d3125c95f68fdb5;Parent=6897721f8c0881be;Sampled=0;Lineage=1:9ee0f5ed:0"
+            },
+            {
+              "key": "x-amzn-RequestId",
+              "value": "e404385e-bcb1-4d05-9f21-4c321b40acc6"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type, Authorization, X-Amz-Date, X-Api-Key, X-Amz-Security-Token"
+            },
+            {
+              "key": "x-amz-apigw-id",
+              "value": "Gm3AxHUVoAMEsjg="
+            },
+            {
+              "key": "Access-Control-Allow-Methods",
+              "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+            },
+            {
+              "key": "X-Cache",
+              "value": "Miss from cloudfront"
+            },
+            {
+              "key": "Via",
+              "value": "1.1 8b6dd0d472e21058db2ca2ab69bddafa.cloudfront.net (CloudFront)"
+            },
+            {
+              "key": "X-Amz-Cf-Pop",
+              "value": "BLR50-P4"
+            },
+            {
+              "key": "X-Amz-Cf-Id",
+              "value": "O-HptTStUCgIXTFINA44nHZBfWfEsGl9hew1dL369Yq-Eg_Aakq-dA=="
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"accessToken\": \"bf3dbd58c604a692041dc7a196b1b6f52f907979254d446e0a8934096b9ebce9\"\n}"
+        },
+        {
+          "name": "Register API Client",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"clientName\": \"Postman API testing\",\r\n    \"clientEmail\": \"testing123@msn.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl_collect}}/api-clients/",
+              "host": [
+                "{{baseUrl_collect}}"
+              ],
+              "path": [
+                "api-clients",
+                ""
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "82"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 10 Nov 2026 08:58:02 GMT"
+            },
+            {
+              "key": "X-Amzn-Trace-Id",
+              "value": "Root=1-6af2dc9a-585916ad325a7d956dd46050;Parent=02bd31d878423a40;Sampled=0;Lineage=1:9ee0f5ed:0"
+            },
+            {
+              "key": "x-amzn-RequestId",
+              "value": "a49952b2-ec9f-48c1-a63f-9ea45cfa4152"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Access-Control-Allow-Headers",
+              "value": "Content-Type, Authorization, X-Amz-Date, X-Api-Key, X-Amz-Security-Token"
+            },
+            {
+              "key": "x-amz-apigw-id",
+              "value": "GndoKEvUIAMEdOg="
+            },
+            {
+              "key": "Access-Control-Allow-Methods",
+              "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+            },
+            {
+              "key": "X-Cache",
+              "value": "Miss from cloudfront"
+            },
+            {
+              "key": "Via",
+              "value": "1.1 00a0f60c17ef48e355a656be0c3da1de.cloudfront.net (CloudFront)"
+            },
+            {
+              "key": "X-Amz-Cf-Pop",
+              "value": "BLR50-P4"
+            },
+            {
+              "key": "X-Amz-Cf-Id",
+              "value": "e_cNsQJ4xuHNIJxeAXEOOxCZDQJ26y5vJncI9IXiOo8-jMwULPWHWw=="
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"accessToken\": \"06c9f58d595a2d475f783de7c76381079ea941eb7a598f5dfee34019554ccbe9\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "List of Books",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", () => {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "const schema = {\r",
+              "  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\r",
+              "  \"title\": \"Generated schema for Root\",\r",
+              "  \"type\": \"array\",\r",
+              "  \"items\": {\r",
+              "    \"type\": \"object\",\r",
+              "    \"properties\": {\r",
+              "      \"id\": {\r",
+              "        \"type\": \"number\"\r",
+              "      },\r",
+              "      \"name\": {\r",
+              "        \"type\": \"string\"\r",
+              "      },\r",
+              "      \"type\": {\r",
+              "        \"type\": \"string\"\r",
+              "      },\r",
+              "      \"available\": {\r",
+              "        \"type\": \"boolean\"\r",
+              "      }\r",
+              "    },\r",
+              "    \"required\": [\r",
+              "      \"id\",\r",
+              "      \"name\",\r",
+              "      \"type\",\r",
+              "      \"available\"\r",
+              "    ]\r",
+              "  }\r",
+              "}\r",
+              "\r",
+              "pm.test(\"Schema is Valid\", () => {\r",
+              "    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl_collect}}/books",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get a single book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\", () => { \r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"verify 'author' and 'price' fileds are present\", () => {\r",
+              "    pm.expect(jsonData).to.have.property(\"author\");\r",
+              "    pm.expect(jsonData).to.have.property(\"price\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time below 1000ms\", () => {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time is above 100ms\", () => { \r",
+              "    pm.expect(pm.response.responseTime).to.be.above(100);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl_collect}}/books/1",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "books",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Order Book",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 201\", () => {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"value of 'created' field is true\", () => { \r",
+              "    pm.expect(jsonData.created).to.eql(true);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"OrderId field is present in response\", () => {\r",
+              "    pm.expect(jsonData).to.have.property(\"orderId\");\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.collectionVariables.set(\"orderId_collect\", jsonData.orderId);\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"bookId\": 1,\r\n    \"customerName\": \"Yousuff MD\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl_collect}}/orders",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all books orders",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"ststus code is 200\", () => { \r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"response is a non-empty array\", () => { \r",
+              "    pm.expect(jsonData).to.be.an('array').that.is.not.empty;\r",
+              "});\r",
+              "\r",
+              "\r",
+              "pm.test(\"each order has required fields\", () => { \r",
+              "    jsonData.forEach(order => {\r",
+              "        pm.expect(order).to.have.property(\"id\");\r",
+              "        pm.expect(order).to.have.property(\"bookId\");\r",
+              "        pm.expect(order).to.have.property(\"customerName\");\r",
+              "        pm.expect(order).to.have.property(\"quantity\");\r",
+              "        pm.expect(order).to.have.property(\"timestamp\");\r",
+              "    });\r",
+              "});\r",
+              "\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl_collect}}/orders",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get an Order",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\", () => { \r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl_collect}}/orders/{{orderId_collect}}",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "orders",
+            "{{orderId_collect}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update an order",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Content-Type header is present\", () => { \r",
+              "    pm.response.to.have.header(\"Content-Type\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"application/json value in content-Type header\", () => {\r",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"bookId\" : 1,\r\n    \"customerName\" : \"John\"\r\n} ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl_collect}}/orders/{{orderId_collect}}",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "orders",
+            "{{orderId_collect}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete an order",
+      "protocolProfileBehavior": {
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl_collect}}/orders/{{orderId_collect}}",
+          "host": [
+            "{{baseUrl_collect}}"
+          ],
+          "path": [
+            "orders",
+            "{{orderId_collect}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{authorization_secret_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl_collect",
+      "value": ""
+    },
+    {
+      "key": "orderId_collect",
+      "value": ""
+    },
+    {
+      "key": "authorization_secret_token",
+      "value": ""
+    }
+  ]
+}
