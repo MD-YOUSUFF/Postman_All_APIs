@@ -33,6 +33,7 @@ Authorization is set at collection level as **Bearer Token** with `{{authorizati
 - [Postman](https://www.postman.com/downloads/)
 - Internet access (or the API running locally)
 - [Node.js](https://nodejs.org/) (includes npm), only needed for command-line runs with Newman
+- [Jenkins](https://www.jenkins.io/download/) (optional), to automate runs from CI
 
 ## Setup
 
@@ -90,15 +91,44 @@ newman run BooksAPI_postman_collection.json --env-var "baseUrl_collect=<your-bas
 
 The report is saved in the `newman` folder.
 
-## Troubleshooting
+## Run with Jenkins (Freestyle Project)
 
-| Problem | Fix |
-|---------|-----|
-| Requests fail with a connection or 404 error | Check `baseUrl_collect` is set correctly and has no trailing slash |
-| `401 Unauthorized` on order requests | Run **Register API Client** first to generate a fresh token |
-| Register request fails because the client already exists | Change `clientEmail` in the request body to a new unique email |
-| Order requests fail with a missing ID | Run **Order Book** first so `orderId_collect` is set |
-| Token or order ID is empty after running | Check the **Tests** tab of the request and the Postman Console |
+Jenkins can run the Newman command automatically and keep the HTML report from every build.
+
+### Prerequisites
+- Java 17 or 21 (`java -version`)
+- `jenkins.war` from https://www.jenkins.io/download/ (Generic Java package)
+- Node.js, `newman` and `newman-reporter-htmlextra` installed globally (see the Newman section above)
+
+### Start Jenkins
+1. Open cmd and run:
+   ```
+   cd C:\Jenkins
+   java -jar jenkins.war
+   ```
+2. Wait for `Jenkins is fully up and running`.
+3. Open `http://localhost:8080` and log in. On the first run, use the initial admin password shown in the cmd log or in `C:\Users\<username>\.jenkins\secrets\initialAdminPassword`. Install the suggested plugins and create your admin user.
+
+### Create a Freestyle Project
+1. Click **New Item**, enter a name (for example `BooksAPI-Newman`), select **Freestyle project** and click **OK**.
+2. Under **Source Code Management**, select **Git** and add this repository URL, with the branch `*/main`.
+3. Under **Build Steps → Add build step → Execute Windows batch command**, add:
+   ```
+   call newman run BooksAPI_postman_collection.json --env-var "baseUrl_collect=<your-base-url>" -r cli,htmlextra
+   ```
+   `call` is needed on Windows. Without it, the batch script stops after Newman runs.
+4. Under **Post-build Actions → Archive the artifacts**, enter `newman/*.html` so the report is saved with each build.
+5. Click **Save**.
+
+### Run and View Results
+1. Click **Build Now**.
+2. Open the build under **Build History**:
+   - **Console Output** shows the Newman test results.
+   - **Build Artifacts** has the HTML report.
+3. A build is green when all tests pass and red when any test fails.
+
+### Stop Jenkins
+Press `Ctrl+C` in the cmd window.
 
 ## Notes
 
