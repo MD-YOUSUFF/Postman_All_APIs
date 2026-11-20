@@ -74,7 +74,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"clientName\": \"Postman API testing\",\r\n    \"clientEmail\": \"testing123@msn.com\"\r\n}",
+          "raw": "{\r\n    \"clientName\": \"Postman API testing\",\r\n    \"clientEmail\": \"testing12{{$timestamp}}3@msn.com\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -92,189 +92,7 @@
           ]
         }
       },
-      "response": [
-        {
-          "name": "accessToken",
-          "originalRequest": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"clientName\": \"Kakan\",\r\n    \"clientEmail\": \"yyy123@msn.com\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "https://simple-books-api.glitch.me/api-clients/",
-              "protocol": "https",
-              "host": [
-                "simple-books-api",
-                "glitch",
-                "me"
-              ],
-              "path": [
-                "api-clients",
-                ""
-              ]
-            }
-          },
-          "status": "Created",
-          "code": 201,
-          "_postman_previewlanguage": "Text",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "key": "Content-Length",
-              "value": "82"
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            },
-            {
-              "key": "Date",
-              "value": "Tue, 10 Nov 2026 04:34:25 GMT"
-            },
-            {
-              "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6af29ed1-3754dd816d3125c95f68fdb5;Parent=6897721f8c0881be;Sampled=0;Lineage=1:9ee0f5ed:0"
-            },
-            {
-              "key": "x-amzn-RequestId",
-              "value": "e404385e-bcb1-4d05-9f21-4c321b40acc6"
-            },
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            },
-            {
-              "key": "Access-Control-Allow-Headers",
-              "value": "Content-Type, Authorization, X-Amz-Date, X-Api-Key, X-Amz-Security-Token"
-            },
-            {
-              "key": "x-amz-apigw-id",
-              "value": "Gm3AxHUVoAMEsjg="
-            },
-            {
-              "key": "Access-Control-Allow-Methods",
-              "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
-            },
-            {
-              "key": "X-Cache",
-              "value": "Miss from cloudfront"
-            },
-            {
-              "key": "Via",
-              "value": "1.1 8b6dd0d472e21058db2ca2ab69bddafa.cloudfront.net (CloudFront)"
-            },
-            {
-              "key": "X-Amz-Cf-Pop",
-              "value": "BLR50-P4"
-            },
-            {
-              "key": "X-Amz-Cf-Id",
-              "value": "O-HptTStUCgIXTFINA44nHZBfWfEsGl9hew1dL369Yq-Eg_Aakq-dA=="
-            }
-          ],
-          "cookie": [],
-          "body": "{\n    \"accessToken\": \"bf3dbd58c604a692041dc7a196b1b6f52f907979254d446e0a8934096b9ebce9\"\n}"
-        },
-        {
-          "name": "Register API Client",
-          "originalRequest": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"clientName\": \"Postman API testing\",\r\n    \"clientEmail\": \"testing123@msn.com\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl_collect}}/api-clients/",
-              "host": [
-                "{{baseUrl_collect}}"
-              ],
-              "path": [
-                "api-clients",
-                ""
-              ]
-            }
-          },
-          "status": "Created",
-          "code": 201,
-          "_postman_previewlanguage": null,
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "key": "Content-Length",
-              "value": "82"
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            },
-            {
-              "key": "Date",
-              "value": "Tue, 10 Nov 2026 08:58:02 GMT"
-            },
-            {
-              "key": "X-Amzn-Trace-Id",
-              "value": "Root=1-6af2dc9a-585916ad325a7d956dd46050;Parent=02bd31d878423a40;Sampled=0;Lineage=1:9ee0f5ed:0"
-            },
-            {
-              "key": "x-amzn-RequestId",
-              "value": "a49952b2-ec9f-48c1-a63f-9ea45cfa4152"
-            },
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            },
-            {
-              "key": "Access-Control-Allow-Headers",
-              "value": "Content-Type, Authorization, X-Amz-Date, X-Api-Key, X-Amz-Security-Token"
-            },
-            {
-              "key": "x-amz-apigw-id",
-              "value": "GndoKEvUIAMEdOg="
-            },
-            {
-              "key": "Access-Control-Allow-Methods",
-              "value": "GET, POST, PUT, DELETE, OPTIONS, PATCH"
-            },
-            {
-              "key": "X-Cache",
-              "value": "Miss from cloudfront"
-            },
-            {
-              "key": "Via",
-              "value": "1.1 00a0f60c17ef48e355a656be0c3da1de.cloudfront.net (CloudFront)"
-            },
-            {
-              "key": "X-Amz-Cf-Pop",
-              "value": "BLR50-P4"
-            },
-            {
-              "key": "X-Amz-Cf-Id",
-              "value": "e_cNsQJ4xuHNIJxeAXEOOxCZDQJ26y5vJncI9IXiOo8-jMwULPWHWw=="
-            }
-          ],
-          "cookie": [],
-          "body": "{\n    \"accessToken\": \"06c9f58d595a2d475f783de7c76381079ea941eb7a598f5dfee34019554ccbe9\"\n}"
-        }
-      ]
+      "response": []
     },
     {
       "name": "List of Books",
@@ -649,15 +467,15 @@
   "variable": [
     {
       "key": "baseUrl_collect",
-      "value": ""
+      "value": "https://simple-books-api.glitch.me"
     },
     {
       "key": "orderId_collect",
-      "value": ""
+      "value": "6whfIMu_tCJy0mcfbteZB"
     },
     {
       "key": "authorization_secret_token",
-      "value": ""
+      "value": "923034b1f92683a7c117cc5530196dfb8e6a7be0861fabb6cd1885ba70b6ded9"
     }
   ]
 }
