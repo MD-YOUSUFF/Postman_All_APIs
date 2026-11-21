@@ -1,0 +1,166 @@
+{
+  "info": {
+    "_postman_id": "f66c2282-73ac-4649-969b-a3f4f3154f43",
+    "name": "FileUpload",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44232755",
+    "_collection_link": "https://go.postman.co/collection/44232755-f66c2282-73ac-4649-969b-a3f4f3154f43?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "SingleFileUpload",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\", () => { \r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"verify fileName field present in response\", () => { \r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData).to.have.property(\"fileName\");\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "7e479ca9-b3ef-4f7a-a80c-fe7b7dae1ffa",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/uploadFile",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "uploadFile"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "MultipleFilesUpload",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\", () => { \r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "var schema = {\r",
+              "  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+              "  \"type\": \"array\",\r",
+              "  \"items\": [\r",
+              "    {\r",
+              "      \"type\": \"object\",\r",
+              "      \"properties\": {\r",
+              "        \"fileName\": {\r",
+              "          \"type\": \"string\"\r",
+              "        },\r",
+              "        \"fileDownloadUri\": {\r",
+              "          \"type\": \"string\"\r",
+              "        },\r",
+              "        \"fileType\": {\r",
+              "          \"type\": \"string\"\r",
+              "        },\r",
+              "        \"size\": {\r",
+              "          \"type\": \"integer\"\r",
+              "        }\r",
+              "      },\r",
+              "      \"required\": [\r",
+              "        \"fileName\",\r",
+              "        \"fileDownloadUri\",\r",
+              "        \"fileType\",\r",
+              "        \"size\"\r",
+              "      ]\r",
+              "    },\r",
+              "    {\r",
+              "      \"type\": \"object\",\r",
+              "      \"properties\": {\r",
+              "        \"fileName\": {\r",
+              "          \"type\": \"string\"\r",
+              "        },\r",
+              "        \"fileDownloadUri\": {\r",
+              "          \"type\": \"string\"\r",
+              "        },\r",
+              "        \"fileType\": {\r",
+              "          \"type\": \"string\"\r",
+              "        },\r",
+              "        \"size\": {\r",
+              "          \"type\": \"integer\"\r",
+              "        }\r",
+              "      },\r",
+              "      \"required\": [\r",
+              "        \"fileName\",\r",
+              "        \"fileDownloadUri\",\r",
+              "        \"fileType\",\r",
+              "        \"size\"\r",
+              "      ]\r",
+              "    }\r",
+              "  ]\r",
+              "}\r",
+              "\r",
+              "pm.test(\"check Schema is Valid\", () => { \r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "files",
+              "type": "file",
+              "uuid": "b5e21266-2c4c-44f9-bdfc-98478e1702d4",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/uploadMultipleFiles",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "uploadMultipleFiles"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
